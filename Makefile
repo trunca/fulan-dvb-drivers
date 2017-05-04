@@ -37,7 +37,6 @@ obj-y	:= avs/
 obj-y	+= multicom/
 obj-y	+= stgfb/
 obj-y	+= player2/
-obj-y	+= pti/
 obj-y	+= simu_button/
 obj-y	+= e2_proc/
 obj-y	+= encrypt/
@@ -45,9 +44,12 @@ obj-y	+= frontends/
 obj-y	+= frontcontroller/
 obj-y	+= compcache/
 obj-y	+= bpamem/
+obj-y   += wireless/
 
-ifndef  MINIMAL
-obj-y	+= wireless/
+ifeq (,$(wildcard $(DRIVER_TOPDIR)/pti_np ))
+obj-y += pti/
+else
+obj-y += pti_np/
 endif
 
 ifdef  HL101
