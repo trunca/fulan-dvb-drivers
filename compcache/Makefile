@@ -1,14 +1,14 @@
-KERNELDIR ?= "/lib/modules/$(shell uname -r)/build"
+EXTRA_CFLAGS := -g -Wall
 
-XVM = sub-projects/allocators/xvmalloc-kmod
-EXTRA_CFLAGS	:=	-Wall
-
-obj-m		+=	zram.o
-zram-objs	:=	zram_drv.o zram_sysfs.o $(XVM)/xvmalloc.o
+obj-m += \
+	lzo-kmod/lzo1x_compress.o \
+	lzo-kmod/lzo1x_decompress.o \
+	ramzswap.o
 
 all:
-	make -C $(KERNELDIR) M=$(PWD) modules
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
 clean:
-	make -C $(KERNELDIR) M=$(PWD) clean
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 	@rm -rf *.ko
+	@rm -rf lzo-kmod/*.ko
