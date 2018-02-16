@@ -849,8 +849,20 @@ void pti_hal_init ( struct stpti *pti , struct dvb_demux* demux, void (*_demulti
 
 }
 
+int pti_hal_descrambler_set_aes ( int session_handle, int descrambler_handle,
+			      u8 * Data, int parity, int data_type )
+{
+        return 0;
+}
+
 int pti_hal_descrambler_set ( int session_handle, int descrambler_handle,
 			      u8 * Data, int parity )
+{
+        return 0;
+}
+
+int pti_hal_descrambler_set_mode ( int session_handle, int descrambler_handle,
+			      enum ca_descr_algo algo )
 {
         return 0;
 }
@@ -1092,6 +1104,8 @@ void paceSwtsByPti(void)
 EXPORT_SYMBOL(paceSwtsByPti);
 
 EXPORT_SYMBOL(pti_hal_descrambler_set);
+EXPORT_SYMBOL(pti_hal_descrambler_set_aes);
+EXPORT_SYMBOL(pti_hal_descrambler_set_mode);
 EXPORT_SYMBOL(pti_hal_descrambler_unlink);
 EXPORT_SYMBOL(pti_hal_descrambler_link);
 EXPORT_SYMBOL(pti_hal_get_new_descrambler);
